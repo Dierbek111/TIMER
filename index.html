@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Таймер обратного отчета</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        #timer {
+            font-family: 'Arial', sans-serif;
+            /* font-size: 24px; */
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div id="timer"></div>
+
+<script>
+    // Устанавливаем дату окончания
+    const endDate = new Date();
+    endDate.setDate(endDate.getDate() + 351);
+
+    // Обновляем таймер каждую секунду
+    const interval = setInterval(() => {
+        const now = new Date();
+        const remainingTime = endDate - now;
+
+        const days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+        document.getElementById('timer').innerHTML = `${days}д ${hours}ч ${minutes}м ${seconds}с`;
+
+        // Если время закончилось
+        if (remainingTime < 0) {
+            clearInterval(interval);
+            document.getElementById('timer').innerHTML = 'Время вышло!';
+        }
+    }, 1000);
+</script>
+
+</body>
+</html>

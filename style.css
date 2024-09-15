@@ -1,0 +1,7 @@
+#timer{
+    font-size: 100px;
+    position: relative;
+    top: 315px;
+    display: flex;
+    justify-content: center;
+}
